@@ -1,0 +1,367 @@
+:root {
+  --bg: #0c0712;
+  --cabinet: #24133a;
+  --cabinet-edge: #3b2160;
+  --gold: #ffcf33;
+  --text: #f2eefa;
+  --muted: #a99bc0;
+  --panel: #171021;
+  --seg: #ff3b3b;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 0%, #2a1640, var(--bg) 70%);
+  color: var(--text);
+  font-family: system-ui, -apple-system, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px 16px 48px;
+}
+
+.cabinet {
+  width: min(100%, 500px);
+  background: linear-gradient(180deg, var(--cabinet-edge), var(--cabinet) 30%, #180c28);
+  border: 3px solid #5a3a88;
+  border-radius: 22px;
+  padding: 14px;
+  box-shadow:
+    0 0 0 4px #0006,
+    0 20px 60px #000a,
+    inset 0 2px 0 #fff2;
+}
+
+.topper {
+  position: relative;
+  text-align: center;
+  padding: 8px 0 12px;
+}
+
+.logo {
+  font: 900 italic 2.4rem/1 'Arial Black', Impact, sans-serif;
+  letter-spacing: 0.04em;
+  background: linear-gradient(180deg, #fff6b0, var(--gold) 45%, #c47f00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 3px 0 #6a1530);
+}
+
+.mode-banner {
+  display: block;
+  margin-top: 6px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  animation: pulse 0.8s infinite alternate;
+}
+.mode-banner.big {
+  color: #ff4d6d;
+}
+.mode-banner.reg {
+  color: #4dc3ff;
+}
+
+@keyframes pulse {
+  to {
+    opacity: 0.55;
+  }
+}
+
+.lamps {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.lamp {
+  flex: 1;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 6px 4px;
+  border-radius: 8px;
+  background: #0f0818;
+  color: #4a3a60;
+  border: 1px solid #000;
+  transition:
+    background 0.1s,
+    color 0.1s,
+    box-shadow 0.1s;
+}
+.lamp-bonus {
+  flex: 1.6;
+}
+.lamp.on.lamp-replay {
+  background: #0b4fae;
+  color: #fff;
+  box-shadow: 0 0 14px #3fa0ff;
+}
+.lamp.on.lamp-bet {
+  background: #b88a00;
+  color: #fff;
+  box-shadow: 0 0 10px var(--gold);
+}
+.lamp.on.lamp-bonus {
+  background: radial-gradient(circle, #fff 0%, #ff4d8d 40%, #b0003a 100%);
+  color: #fff;
+  box-shadow: 0 0 24px #ff3d7f;
+  animation: pulse 0.35s infinite alternate;
+}
+
+.reel-frame {
+  border-radius: 12px;
+  padding: 6px;
+  background: linear-gradient(180deg, #000, #2a1a3a);
+  box-shadow: inset 0 0 0 2px #6a4a99;
+}
+
+#reels {
+  display: block;
+  width: 100%;
+  aspect-ratio: 468 / 332;
+  border-radius: 8px;
+}
+
+.displays {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.seg {
+  background: #080408;
+  border: 2px solid #000;
+  border-radius: 8px;
+  padding: 4px 8px 6px;
+  text-align: right;
+}
+.seg label {
+  display: block;
+  text-align: left;
+  font-size: 0.65rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+.seg output {
+  font: 700 1.5rem/1.1 ui-monospace, 'SF Mono', Consolas, monospace;
+  color: var(--seg);
+  text-shadow: 0 0 8px #ff3b3b99;
+  font-variant-numeric: tabular-nums;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.controls-left {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  border: 0;
+  cursor: pointer;
+  font-weight: 900;
+  color: #fff;
+  touch-action: manipulation;
+  user-select: none;
+  transition:
+    transform 0.05s,
+    filter 0.1s;
+}
+.btn:active {
+  transform: translateY(2px) scale(0.97);
+}
+.btn:disabled {
+  filter: grayscale(0.8) brightness(0.55);
+  cursor: default;
+}
+
+.btn-bet {
+  width: 64px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  background: linear-gradient(180deg, #ffd34d, #c27c00);
+  color: #3a1d00;
+  box-shadow: 0 4px 0 #6a4200;
+}
+
+.btn-lever {
+  width: 64px;
+  border-radius: 50% / 40%;
+  font-size: 0.72rem;
+  background: radial-gradient(circle at 40% 30%, #ff8aa5, #d0003a 60%, #6a001c);
+  box-shadow: 0 4px 0 #4a0014;
+}
+
+.stops {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.btn-stop {
+  height: 64px;
+  border-radius: 14px;
+  background: radial-gradient(circle at 50% 35%, #8fffd0, #00b36b 60%, #00573a);
+  box-shadow:
+    0 5px 0 #003322,
+    0 0 16px #00ff9966;
+}
+.btn-stop:disabled {
+  box-shadow: 0 5px 0 #111;
+}
+
+.debug {
+  margin: 10px 0 0;
+  font: 0.8rem ui-monospace, monospace;
+  color: var(--muted);
+}
+
+.panel {
+  width: min(100%, 340px);
+  background: var(--panel);
+  border: 1px solid #2c1f3e;
+  border-radius: 16px;
+  padding: 16px 18px;
+}
+
+.panel h2 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+}
+.panel h3 {
+  margin: 18px 0 8px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.stats {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 14px;
+}
+.stats div {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #3a2c50;
+  padding-bottom: 3px;
+}
+.stats dt {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.stats dd {
+  margin: 0;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.history {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 1.6em;
+}
+.history li {
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+}
+.history .big {
+  background: #5a0a22;
+  color: #ffb3c4;
+}
+.history .reg {
+  background: #0a3a5a;
+  color: #b3e3ff;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+select,
+.small {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #3f2d58;
+  background: #241834;
+  color: var(--text);
+  cursor: pointer;
+}
+.small.danger {
+  border-color: #6a2a3a;
+  color: #ffb3c4;
+}
+
+.note {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.keys {
+  margin: 0;
+  padding-left: 1.1em;
+  font-size: 0.82rem;
+  line-height: 1.9;
+}
+kbd {
+  font: 0.75rem ui-monospace, monospace;
+  padding: 1px 6px;
+  border-radius: 4px;
+  border: 1px solid #4a3a60;
+  background: #241834;
+}
+
+@media (max-width: 420px) {
+  .cabinet {
+    padding: 10px;
+  }
+  .logo {
+    font-size: 2rem;
+  }
+  .btn-bet,
+  .btn-lever {
+    width: 54px;
+  }
+  .btn-stop {
+    height: 58px;
+  }
+  .seg output {
+    font-size: 1.2rem;
+  }
+}
+
+.mode-banner[hidden],
+.debug[hidden] {
+  display: none;
+}
